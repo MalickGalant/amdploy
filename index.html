@@ -1,79 +1,39 @@
-<html>
-<head>
-
+<!doctype html>
+<html ⚡ lang="en">
+<head> 
+<meta charset="utf-8"> 
+<title>Animated Snackbar</title>
+<link rel="canonical" href="<% canonical %>">
 <meta name="viewport" content="width=device-width">
 <meta property="fb:use_automatic_ad_placement" content="true">
+
 <script async src="https://cdn.ampproject.org/v0.js"></script> 
-<!-- ## Setup -->
 <link rel="canonical" href="https://maliekblog.vercel.app">
 
-<script async custom-element="amp-position-observer" src="https://cdn.ampproject.org/v0/amp-position-observer-0.1.js"></script> <!-- Import amp-animation extension --> 
-<script async custom-element="amp-animation" src="https://cdn.ampproject.org/v0/amp-animation-0.1.js"></script>
-<script async="async" src="https://www.google.com/adsense/search/ads.js"></script>
-<script defer src="https://accounts.google.com/gsi/client" ></script> 
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script type="text/javascript" charset="utf-8">
   (function(g,o){g[o]=g[o]||function(){(g[o]['q']=g[o]['q']||[]).push(
   arguments)},g[o]['t']=1*new Date})(window,'_googCsa');
 </script>
-        
+
+ <!---preview: defaultteaserImage: '/static/samples/img/teaser/animated_snackbar.jpg'author: sebastianbenz--->
+ <!-- ## Introduction [Snackbars](https://material.io/guidelines/components/snackbars-toasts.html) provide brief feedback about an operation through a message at the bottom of the screen.--><!-- -->
+ <!-- ## Setup --> 
+ <!-- We use `amp-bind` to trigger the Snackbar... --> 
+
+ <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script> 
+<!-- ... and `amp-animation` to show and hide the Snackbar. --> 
+<script async custom-element="amp-animation" src="https://cdn.ampproject.org/v0/amp-animation-0.1.js"></script> 
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript><style amp-custom> .trigger { display: flex; align-items: center; justify-content: center; } .trigger > * { padding: 0.5rem; margin: 0.5rem; } .snackbar { position: fixed; bottom: 0; left: 0; right: 0; width: 100%; height: 48px; margin: 0 auto; padding: 14px 24px; max-width: 568px; background: #323232; color: white; border-radius: 2px; font-size: 14px; display: flex; align-items: center; justify-content: flex-start; transform: translateY(100%); z-index: 1000; } </style>     
 </head>
 
 <body>
 
 
-<h3 class="target">
-   <a class="target-anchor" id="top"></a>
-    Page News Content
-    <amp-position-observer
-      on="enter:hideAnim.start; exit:showAnim.start"
-      layout="nodisplay">
-    </amp-position-observer>
-  </h3>
 
-  <!--
-    We use 2 `amp-animation` elements to trigger the visibility of the button. The first one is for making the button visible...
-  -->
-  <amp-animation id="showAnim" layout="nodisplay">
-    <script type="application/json">
-      {
-        "duration": "200ms",
-         "fill": "both",
-         "iterations": "1",
-         "direction": "alternate",
-         "animations": [
-           {
-             "selector": "#scrollToTopButton",
-             "keyframes": [
-               { "opacity": "1", "visibility": "visible" }
-             ]
-           }
-         ]
-      }
-    </script>
-  </amp-animation>
-  <!-- ... and the second one is for adding the button.-->
-  <amp-animation id="hideAnim" layout="nodisplay">
-    <script type="application/json">
-      {
-       "duration": "200ms",
-         "fill": "both",
-         "iterations": "1",
-         "direction": "alternate",
-         "animations": [
-           {
-             "selector": "#scrollToTopButton",
-             "keyframes": [
-               { "opacity": "0", "visibility": "hidden" }
-             ]
-           }
-         ]
-     }
-    </script>
-  </amp-animation>
   <!--
     Here is a dummy spacer.
   -->
+
   <div class="spacer"></div>
 
   <!--## The scroll to top button -->
@@ -81,13 +41,14 @@
   <!--
     We use the `scrollTo` action to scroll the page when the button is tapped. Find more about actions [here](https://github.com/ampproject/amphtml/blob/main/docs/spec/amp-actions-and-events.md).
   -->
-  <button id="scrollToTopButton" on="tap:top.scrollTo(duration=200)" class="scrollToTop">⌃</button>
+
+   <button id="scrollToTopButton" on="tap:top.scrollTo(duration=200)" class="scrollToTop">⌃</button>
   
-  <div id="g_id_signin"></div>
+   <div id="g_id_signin"></div>
    
   <div id="afscontainer1"></div>
 
-<script type="text/javascript" charset="utf-8">
+  <script type="text/javascript" charset="utf-8">
 
 var pageOptions = {
   'pubId': 'test client ID', // Enter your own client-ID here
