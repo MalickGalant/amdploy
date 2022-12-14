@@ -9,12 +9,6 @@
 
 <script async src="https://cdn.ampproject.org/v0.js"></script> 
 <link rel="canonical" href="https://maliekblog.vercel.app">
-
-<script type="text/javascript" charset="utf-8">
-  (function(g,o){g[o]=g[o]||function(){(g[o]['q']=g[o]['q']||[]).push(
-  arguments)},g[o]['t']=1*new Date})(window,'_googCsa');
-</script>
-
  <!---preview: defaultteaserImage: '/static/samples/img/teaser/animated_snackbar.jpg'author: sebastianbenz--->
  <!-- ## Introduction [Snackbars](https://material.io/guidelines/components/snackbars-toasts.html) provide brief feedback about an operation through a message at the bottom of the screen.--><!-- -->
  <!-- ## Setup --> 
@@ -27,56 +21,30 @@
 </head>
 
 <body>
-
-
-
   <!--
     Here is a dummy spacer.
   -->
-
+  <div id="afscontainer1"></div>
   <div class="spacer"></div>
 
+  <button id="scrollToTopButton" on="tap:top.scrollTo(duration=200)" class="scrollToTop">⌃</button>
+ 
   <!--## The scroll to top button -->
-
   <!--
     We use the `scrollTo` action to scroll the page when the button is tapped. Find more about actions [here](https://github.com/ampproject/amphtml/blob/main/docs/spec/amp-actions-and-events.md).
   -->
 
-   <button id="scrollToTopButton" on="tap:top.scrollTo(duration=200)" class="scrollToTop">⌃</button>
-  
+   
+ 
    <div id="g_id_signin"></div>
    
-  <div id="afscontainer1"></div>
+   
 
-  <script type="text/javascript" charset="utf-8">
+  
 
-var pageOptions = {
-  'pubId': 'test client ID', // Enter your own client-ID here
-  'relatedSearchTargeting': 'content', // Must use 'content'
-  'hl': 'en', // The preferred language for related terms (default to 'en' if not specified)
-  'styleId': '1234567890', // Enter your style ID
-  'resultsPageBaseUrl': '//www.example.com/search', // Enter the base URL of your results page
-  'resultsPageQueryParam': 'query', // Specify the query parameter on your results page
-  'terms': 'term a,term b', // Optionally provide your own related terms in a comma-delimited list
-  'referrerAdCreative': 'example ad title' // Only used when a user clicked an ad to arrive here
-};
+   <p>More page content</p>
 
-var rsblock1 = {
-  'container': 'afscontainer1',
-  'relatedSearches': 6,
-  'width': 500
-};
-
-_googCsa('relatedsearch', pageOptions, rsblock1);
-</script>
-
-<p>More page content</p>
-
-
-
-<script> function handleCredentialResponse(response) { console.log("Encoded JWT ID token: " + response.credential); ... } window.onload = function () { google.accounts.id.initialize({ client_id: "513009225193-857p907lo1j2jgf6upo8hlam45cc5m60.apps.googleusercontent.com", callback: handleCredentialResponse }); google.accounts.id.renderButton( document.getElementById("g_id_signin"), { theme: "outline", size: "large" } // customization attributes ); google.accounts.id.prompt(); // also display the One Tap dialog } </script>
-
-
+   
 
  </body>
  </html>
