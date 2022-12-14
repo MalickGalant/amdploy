@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <title>Amdploy Notification</title>
+
   <script async src="https://cdn.ampproject.org/v0.js"></script>
- 
+  
   <!-- ## Setup -->
  
   <!-- Import `amp-user-notification` in the header. -->
@@ -20,6 +21,8 @@
  <!--
     Specify any additional CSS, default CSS class will put the `amp-user-notification` element in the left bottom corner.
   -->
+
+
   <style amp-custom>
     :root {
       --space-2: 1rem;   /* 16px */
@@ -39,9 +42,16 @@
   <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 </head>
 <body>
+<div id="afscontainer1"></div>  
+<script type="text/javascript" charset="utf-8"> var pageOptions = { 'pubId': 'test client ID', // Enter your own client-ID here 'relatedSearchTargeting': 'content', // Must use 'content' 'hl': 'en', // The preferred language for related terms (default to 'en' if not specified) 'styleId': '1234567890', // Enter your style ID 'resultsPageBaseUrl': '//www.example.com/search', // Enter the base URL of your results page 'resultsPageQueryParam': 'query', // Specify the query parameter on your results page 'terms': 'term a,term b', // Optionally provide your own related terms in a comma-delimited list 'referrerAdCreative': 'example ad title' // Only used when a user clicked an ad to arrive here}; var rsblock1 = { 'container': 'afscontainer1', 'relatedSearches': 6, 'width': 500}; _googCsa('relatedsearch', pageOptions, rsblock1);</script> 
+
+<p>More page content</p>
+
+
  <!-- ## Basic usage --> 
  <!-- `amp-ad` requires `width` and `height` values. Select an ad network via the type argument. -->
  <amp-ad width="300" height="250" type="a9" data-amzn_assoc_ad_mode = "auto" data-divid = "amzn-assoc-ad-fe746097-f142-4f8d-8dfb-45ec747632e5" data-recomtype = "async" data-adinstanceid = "fe746097-f142-4f8d-8dfb-45ec747632e5"> </amp-ad> 
+
  <!-- ## Placeholder -->
  <!-- Optionally `amp-ad` supports a child element with the `placeholder` attribute. If supported by the ad network, this element is shown until the ad is available for viewing. -->
  <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist"> 
@@ -50,12 +60,20 @@
 </div> 
 </amp-ad>
  <!-- ## Fallback -->
- <!-- `amp-ad` supports a child element with the `fallback` attribute. If supported by the ad network, this element is shown if no ad is available for this slot. --> <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist"> <div fallback> <p>Thank you for trying AMP!</p> <p>You got lucky! We have no ad to show to you!</p> </div> </amp-ad>
+ <!-- `amp-ad` supports a child element with the `fallback` attribute. If supported by the ad network, this element is shown if no ad is available for this slot. -->
+ <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist"> 
+ <div fallback> 
+ <p>Thank you for trying AMP!</p>
+ <p>You got lucky! We have no ad to show to you!</p> 
+</div>
+ </amp-ad>
  
   <!-- ## Basic usage with local storage -->
   <!--
     By default, when the user agrees to the cookies policy, the status is saved in the local storage.
   -->
+
+
   <amp-user-notification
     id="my-notification"
     class="sample-notification"
@@ -72,6 +90,9 @@
     You can find a sample backend implementation [here](https://github.com/ampproject/samples/blob/master/amp-paywall-demo/controllers/amp-user-notification/api.js).
     If the notification has already been dismissed and the related item has been added to the localstorage, the notification will not appear even if you have configured `data-show-if-href` and `data-dismiss-href`.
   -->
+
+
+
   <amp-user-notification
       id="my-notification-with-server-endpoint"
       class="sample-notification"
