@@ -1,50 +1,67 @@
 <!doctype html>
 <html ⚡ lang="en">
-<head> 
-<meta charset="utf-8"> 
-<title>Animated Snackbar</title>
-<link rel="canonical" href="<% canonical %>">
-<meta name="viewport" content="width=device-width">
-<meta property="fb:use_automatic_ad_placement" content="true">
-
-<script async src="https://cdn.ampproject.org/v0.js"></script> 
-<link rel="canonical" href="https://maliekblog.vercel.app">
- <!---preview: defaultteaserImage: '/static/samples/img/teaser/animated_snackbar.jpg'author: sebastianbenz--->
- <!-- ## Introduction [Snackbars](https://material.io/guidelines/components/snackbars-toasts.html) provide brief feedback about an operation through a message at the bottom of the screen.--><!-- -->
- <!-- ## Setup --> 
- <!-- We use `amp-bind` to trigger the Snackbar... --> 
-
- <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script> 
-<!-- ... and `amp-animation` to show and hide the Snackbar. --> 
-<script async custom-element="amp-animation" src="https://cdn.ampproject.org/v0/amp-animation-0.1.js"></script> 
-<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript><style amp-custom> .trigger { display: flex; align-items: center; justify-content: center; } .trigger > * { padding: 0.5rem; margin: 0.5rem; } .snackbar { position: fixed; bottom: 0; left: 0; right: 0; width: 100%; height: 48px; margin: 0 auto; padding: 14px 24px; max-width: 568px; background: #323232; color: white; border-radius: 2px; font-size: 14px; display: flex; align-items: center; justify-content: flex-start; transform: translateY(100%); z-index: 1000; } </style>     
+<head>
+  <meta charset="utf-8">
+  <title>Amdploy Notification</title>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <!-- ## Setup -->
+  <!-- Import `amp-user-notification` in the header. -->
+  <script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
+  <!-- `amp-user-notification` requires `amp-analytics` to be imported as well. -->
+  <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+  <link rel="canonical" href="<% canonical %>">
+  <!--
+    Specify any additional CSS, default CSS class will put the `amp-user-notification` element in the left bottom corner.
+  -->
+  <style amp-custom>
+    :root {
+      --space-2: 1rem;   /* 16px */
+    }
+    /* Center the notification content */
+    amp-user-notification.sample-notification {
+      padding: var(--space-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    amp-user-notification.sample-notification > button {
+      min-width: 80px;
+    }
+  </style>
+  <meta name="viewport" content="width=device-width">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 </head>
-
 <body>
+
+  <!-- ## Basic usage with local storage -->
   <!--
-    Here is a dummy spacer.
+    By default, when the user agrees to the cookies policy, the status is saved in the local storage.
   -->
-  <div id="afscontainer1"></div>
-  <div class="spacer"></div>
+  <amp-user-notification
+    id="my-notification"
+    class="sample-notification"
+    layout="nodisplay">
+    This is an amp-user-notification. It uses local storage to store the dismissed state.
+    <button on="tap:my-notification.dismiss">I accept</button>
+  </amp-user-notification>
 
-  <button id="scrollToTopButton" on="tap:top.scrollTo(duration=200)" class="scrollToTop">⌃</button>
- 
-  <!--## The scroll to top button -->
+  <!-- ## Advanced usage with a server endpoint -->
   <!--
-    We use the `scrollTo` action to scroll the page when the button is tapped. Find more about actions [here](https://github.com/ampproject/amphtml/blob/main/docs/spec/amp-actions-and-events.md).
+    When using a backend solution, two parameters are available: `data-show-if-href` and `data-dismiss-if-href`. They can be used together or separatively.
+    * `data-show-if-href` needs to point to a server-endpoint returning `{ "showNotification": true|false }`.
+    * The URL defined by `data-dismiss-href` will be called when the notification is dismissed.
+    You can find a sample backend implementation [here](https://github.com/ampproject/samples/blob/master/amp-paywall-demo/controllers/amp-user-notification/api.js).
+    If the notification has already been dismissed and the related item has been added to the localstorage, the notification will not appear even if you have configured `data-show-if-href` and `data-dismiss-href`.
   -->
+  <amp-user-notification
+      id="my-notification-with-server-endpoint"
+      class="sample-notification"
+      layout="nodisplay"
+      data-show-if-href="<% base_path %>/show?timestamp=TIMESTAMP"
+      data-dismiss-href="<% base_path %>/echo/post">
+      This is an amp-user-notification. It uses a backend service to verify if the notification has to be shown.
+      <button on="tap:my-notification.dismiss">I accept</button>
+  </amp-user-notification>
 
-   
- 
-   <div id="g_id_signin"></div>
-   
-   
-
-  
-
-   <p>More page content</p>
-
-   
-
- </body>
- </html>
+  </body>
+  </html>
