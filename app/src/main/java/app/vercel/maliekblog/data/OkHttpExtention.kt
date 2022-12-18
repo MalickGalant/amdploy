@@ -1,3 +1,5 @@
+package app.vercel.maliekblog.data
+
 import java.io.IOException
 import kotlin.coroutines.resumeWithException
 import kotlinx.coroutines.suspendCancellableCoroutine
