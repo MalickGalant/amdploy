@@ -1,0 +1,88 @@
+<html>
+  <head>
+
+
+
+    <script type="text/javascript">
+      function executeRequest(request, outElement) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4) {
+            if (xmlhttp.status == 200) {
+              outElement.value = xmlhttp.responseText;
+            } else {
+              outElement.value = "Error running request. Response: "
+                  + xmlhttp.responseText;
+            }
+          }
+        };
+        xmlhttp.open('GET', 'https://digitalassetlinks.googleapis.com/v1/' +
+            request, true);
+        xmlhttp.send();
+      }
+
+      function executeListRequest() {
+        var sourceWebSite = encodeURIComponent(
+            document.getElementById('list_source').value);
+        var relation = encodeURIComponent(
+            document.getElementById('list_relation').value);
+        var outputTextArea = document.getElementById('list_response');
+        executeRequest('statements:list?source.web.site=' + sourceWebSite
+            + '&relation=' + relation, outputTextArea);
+      }
+
+      function executeCheckRequest() {
+        var sourceWebSite = encodeURIComponent(
+            document.getElementById('check_source').value);
+        var relation = encodeURIComponent(
+            document.getElementById('check_relation').value);
+        var targetPackageName = encodeURIComponent(
+            document.getElementById('check_target_package').value);
+        var targetSha256Fingerprint = encodeURIComponent(
+            document.getElementById('check_target_sha256_fingerprint').value);
+        var outputTextArea = document.getElementById('check_response');
+        executeRequest('assetlinks:check?source.web.site=' + sourceWebSite
+            + '&relation=' + relation
+            + '&target.android_app.package_name=' + targetPackageName
+            + '&target.android_app.certificate.sha256_fingerprint='
+            +     targetSha256Fingerprint
+            + '&key=API_KEY',
+            outputTextArea);
+      }
+
+    </script>
+  </head>
+  <body>
+    <h2>List()</h2>
+    <label>Source Web Asset:</label>
+    <input type="text" id="list_source"
+        value="http://example.digitalassetlinks.org">
+     
+    <label>Relation:</label>
+    <input type="text" id="list_relation"
+        value="delegate_permission/common.handle_all_urls">
+     
+    <button type="button" onclick="executeListRequest()">Run</button><br>
+    <textarea rows="20" cols="80" id="list_response"></textarea>
+    <hr>
+    <h2>Check()</h2>
+    <label>Source Web Asset:</label>
+    <input type="text" id="check_source"
+        value="http://example.digitalassetlinks.org">
+     
+    Relation:
+    <input type="text" id="check_relation"
+        value="delegate_permission/common.handle_all_urls"><br>
+     
+    <label>Target Android Package:</label>
+    <input type="text" id="check_target_package"
+        value="org.digitalassetlinks.sampleapp">
+     
+    <label>Target Android Certificate Fingerprint:</label>
+    <input type="text" id="check_target_sha256_fingerprint"
+        value="10:39:38:EE:45:37:E5:9E:8E:E7:92:F6:54:50:4F:B8:34:6F:C6:B3:46:D0:BB:C4:41:5F:C3:39:FC:FC:8E:C1">
+     
+    <button type="button" onclick="executeCheckRequest()">Run</button><br>
+    <textarea rows="20" cols="80" id="check_response"></textarea>
+  </body>
+</html>
