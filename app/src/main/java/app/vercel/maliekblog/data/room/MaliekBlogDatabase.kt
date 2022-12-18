@@ -23,7 +23,7 @@ import app.vercel.maliekblog.data.Category
 import app.vercel.maliekblog.data.Episode
 import app.vercel.maliekblog.data.Podcast
 import app.vercel.maliekblog.data.PodcastCategoryEntry
-import com.vercel.maliekblog.data.PodcastFollowedEntry
+import app.vercel.maliekblog.data.PodcastFollowedEntry
 
 /**
  * The [RoomDatabase] we use in this app.
